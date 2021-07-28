@@ -1,14 +1,83 @@
+import axios from 'axios';
+import { Server, Features, Usage } from '../../types';
 export default class Modulus {
-    url: string;
-
+    private url: string;
     constructor(url: string) {
-        this.url = url;
+        this.url = url
     }
 
-    public async server(): Promise<{}> {
-        // Get Data from Cultum Server
+    async server(id: string): Promise<Server> {
+        try {
+            let server = await axios.get(`${this.url}/server/${id}`)
+            return server.data
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
 
-        return Promise.resolve({})
+    async toggle(server: string, setting: Features): Promise<Server> {
+        try {
+            const response = await axios({
+                method: 'PUT',
+                url: `${this.url}/server/${server}/edit`,
+                data: {
+                    setting: setting
+                }
+            })
+            console.log(response.data)
+            return response.data;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+
+    async add(server: string, prefix: string): Promise<string[]> {
+        try {
+            const response = await axios({
+                method: 'PUT',
+                url: `${this.url}/prefix/${server}`,
+                data: {
+                    prefix: prefix
+                }
+            })
+
+            return response.data;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+    async remove(server: string, prefix: string): Promise<string[] | undefined> {
+        try {
+            const response = await axios({
+                method: 'DELETE',
+                url: `${this.url}/prefix/${server}`,
+                data: {
+                    prefix: prefix
+                }
+            })
+
+            return response.data;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    async message(amount: number): Promise<Usage[]> {
+
+        try {
+            const response = await axios({
+                method: 'PUT',
+                url: `${this.url}/message`,
+                params: {
+                    amount: amount
+                }
+            })
+
+            return response.data;
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 
 }
