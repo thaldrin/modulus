@@ -79,5 +79,37 @@ export default class Modulus {
             throw new Error(error)
         }
     }
+    async command(command: string, amount: number): Promise<Usage[]> {
+
+        try {
+            const response = await axios({
+                method: 'PUT',
+                url: `${this.url}/command/${command}`,
+                params: {
+                    amount: amount
+                }
+            })
+
+            return response.data;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+    async count(servers: number): Promise<Usage[]> {
+
+        try {
+            const response = await axios({
+                method: 'PUT',
+                url: `${this.url}/servers`,
+                data: {
+                    servers: servers
+                }
+            })
+
+            return response.data;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
 
 }
