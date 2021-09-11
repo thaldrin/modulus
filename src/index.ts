@@ -1,16 +1,22 @@
 import axios from 'axios';
 import { Server, Features, Usage } from '../../types';
+import config from '../utils/config';
 export default class Modulus {
     private url: string;
-    constructor(url: string) {
-        this.url = url
+    constructor(url?: string) {
+        // @ts-ignore
+        if (!url) this.url = config.CULTUM_URL
+        else this.url = url
     }
+
+
 
     async server(id: string): Promise<Server> {
         try {
             let server = await axios.get(`${this.url}/server/${id}`)
             return server.data
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
@@ -27,6 +33,7 @@ export default class Modulus {
             console.log(response.data)
             return response.data;
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
@@ -44,6 +51,7 @@ export default class Modulus {
 
             return response.data;
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
@@ -59,6 +67,7 @@ export default class Modulus {
 
             return response.data;
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
@@ -76,6 +85,7 @@ export default class Modulus {
 
             return response.data;
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
@@ -92,6 +102,7 @@ export default class Modulus {
 
             return response.data;
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
@@ -108,6 +119,7 @@ export default class Modulus {
 
             return response.data;
         } catch (error) {
+            // @ts-ignore
             throw new Error(error)
         }
     }
