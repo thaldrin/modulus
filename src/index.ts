@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Server, Features, Usage } from '../../types';
+import { Server, Features, Usage } from '../../../utils/types';
 import config from '../utils/config';
 export default class Modulus {
     private url: string;
@@ -14,6 +14,7 @@ export default class Modulus {
     async server(id: string): Promise<Server> {
         try {
             let server = await axios.get(`${this.url}/server/${id}`)
+            // @ts-ignore
             return server.data
         } catch (error) {
             // @ts-ignore
@@ -30,7 +31,7 @@ export default class Modulus {
                     setting: setting
                 }
             })
-            console.log(response.data)
+            // @ts-ignore
             return response.data;
         } catch (error) {
             // @ts-ignore
@@ -48,7 +49,7 @@ export default class Modulus {
                     prefix: prefix
                 }
             })
-
+            // @ts-ignore
             return response.data;
         } catch (error) {
             // @ts-ignore
@@ -64,7 +65,7 @@ export default class Modulus {
                     prefix: prefix
                 }
             })
-
+            // @ts-ignore
             return response.data;
         } catch (error) {
             // @ts-ignore
@@ -82,7 +83,7 @@ export default class Modulus {
                     amount: amount
                 }
             })
-
+            // @ts-ignore
             return response.data;
         } catch (error) {
             // @ts-ignore
@@ -99,7 +100,7 @@ export default class Modulus {
                     amount: amount
                 }
             })
-
+            // @ts-ignore
             return response.data;
         } catch (error) {
             // @ts-ignore
@@ -116,7 +117,7 @@ export default class Modulus {
                     servers: servers
                 }
             })
-
+            // @ts-ignore
             return response.data;
         } catch (error) {
             // @ts-ignore
