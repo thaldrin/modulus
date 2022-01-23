@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Server, Features, Usage } from '../../../utils/types';
+import { Server, Features, Usage } from '../utils/types';
 import config from '../utils/config';
 export default class Modulus {
     private url: string;
